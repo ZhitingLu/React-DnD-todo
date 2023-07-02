@@ -13,27 +13,39 @@ const CreateTasks = ({ tasks, setTasks }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (task.name.length < 3) 
-            return toast.error("A task must have more than 3 characters")
+        if (task.name.length < 3)
+            return toast.error("A task must have more than 3 characters");
 
-        setTasks((prev)=> {
+        if (task.name.length > 50)
+            return toast.error("A task must not be more than 50 characters");
+
+        setTasks((prev) => {
             const list = [...prev, task];
 
             localStorage.setItem("tasks", JSON.stringify(list));
 
             return list;
+        });
+
+        toast.success("Task created")
+
+        // reset task input
+        setTask({
+            id: "",
+            name: "",
+            status: "todo",
         })
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input 
-            type="text" 
-            className="border-2 border-slate-400 bg-slate-100 rounded-md mr-4 h-10 w-64 px-1" 
-            value={task.name}
-            onChange={(e) => 
-                setTask({ ...task, id: uuidv4(), name: e.target.value })
-            }
+            <input
+                type="text"
+                className="border-2 border-slate-400 bg-slate-100 rounded-md mr-4 h-10 w-64 px-1"
+                value={task.name}
+                onChange={(e) =>
+                    setTask({ ...task, id: uuidv4(), name: e.target.value })
+                }
             />
             <button className="bg-cyan-500 rounded-md h-10 px-4 text-white">
                 Create
