@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  console.log("tasks:", tasks);
+  //console.log("tasks:", tasks);
 
   useEffect(() => {
     setTasks(JSON.parse(localStorage.getItem("tasks")));
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <div className="bg-slate-100 w-screen h-screen flex flex-col items-center pt-3 gap-16">
+      <div className="bg-slate-100 w-screen h-screen flex flex-col items-center pt-32 gap-16">
         <CreateTasks tasks={tasks} setTasks={setTasks} />
         <ListTasks tasks={tasks} setTasks={setTasks} />
       </div>
