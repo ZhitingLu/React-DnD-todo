@@ -1,6 +1,6 @@
 # React-DnD-todo
 
-This is a simple todo application built using React that incorporates drag and drop functionality. Users can create, edit, and organize their tasks by dragging and dropping them within different categories or lists.
+This is a simple todo application built using React that incorporates drag and drop functionality. Users can create and organize their tasks by dragging and dropping them within different categories or lists.
 
 ## Features
 Create new tasks
