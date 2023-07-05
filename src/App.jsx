@@ -4,6 +4,7 @@ import ListTasks from "./components/ListTasks";
 import { Toaster } from "react-hot-toast";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -17,10 +18,10 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <Toaster />
-      <div className="bg-slate-100 w-screen h-screen flex flex-col p-3 items-center pt-32 gap-16">
-        <CreateTasks tasks={tasks} setTasks={setTasks} />
-        <ListTasks tasks={tasks} setTasks={setTasks} />
-      </div>
+        <div className="bg-slate-100 w-screen h-screen flex flex-col p-3 items-center pt-32 gap-16">
+          <CreateTasks tasks={tasks} setTasks={setTasks} />
+          <ListTasks tasks={tasks} setTasks={setTasks} />
+        </div>
     </DndProvider>
   );
 }
