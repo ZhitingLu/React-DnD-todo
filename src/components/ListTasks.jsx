@@ -74,8 +74,8 @@ const Section = ({ status, tasks, setTasks, todos, inProgress, closed }) => {
       });
       localStorage.setItem("tasks", JSON.stringify(mTasks));
 
-      toast("Task status changed", {icon: "😼"});
-      
+      toast("Task status changed", { icon: "😼" });
+
       return mTasks;
     });
   };
@@ -122,6 +122,8 @@ const Task = ({ task, tasks, setTasks }) => {
 
   console.log(isDragging);
 
+  const handleEdit = (id) => {};
+
   const handleRemove = (id) => {
     console.log(id);
 
@@ -142,7 +144,9 @@ const Task = ({ task, tasks, setTasks }) => {
           isDragging ? "opacity-25" : "opacity-100"
         } cursor-grab`}
       >
-        <p>{task.name}</p>
+        <p>
+          <button className="hover:underline " onClick={() => handleEdit(task.id)}>{task.name}</button>
+        </p>
         <button
           className="absolute bottom-1 right-1 text-slate-400"
           onClick={() => handleRemove(task.id)}
