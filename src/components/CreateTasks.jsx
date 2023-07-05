@@ -7,6 +7,7 @@ const CreateTasks = ({ tasks, setTasks }) => {
     const [task, setTask] = useState({
         id: "",
         name: "",
+        description: "",
         status: "todo", // todo, in progress or closed
     });
 
