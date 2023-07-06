@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const Modal = ({ tasks, setTasks }) => {
-
-  const [showModal, setShowModal] = useState(false);
+const Modal = ({ tasks, setTasks, showModal, setShowModal }) => {
 
   return (
     <>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { toast } from "react-hot-toast";
 
-const ListTasks = ({ tasks, setTasks }) => {
+const ListTasks = ({ tasks, setTasks, showModal, setShowModal }) => {
   const [todos, setTodos] = useState([]);
   const [inProgress, setInProgress] = useState([]);
   const [closed, setClosed] = useState([]);
@@ -31,6 +31,8 @@ const ListTasks = ({ tasks, setTasks }) => {
           todos={todos}
           inProgress={inProgress}
           closed={closed}
+          showModal={showModal}
+          setShowModal={setShowModal} // pass setShowModal as a prop
         />
       ))}
     </div>
@@ -39,7 +41,7 @@ const ListTasks = ({ tasks, setTasks }) => {
 
 export default ListTasks;
 
-const Section = ({ status, tasks, setTasks, todos, inProgress, closed }) => {
+const Section = ({ status, tasks, setTasks, todos, inProgress, closed, showModal, setShowModal}) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
     drop: (item) => addItemToSetion(item.id),
@@ -89,7 +91,7 @@ const Section = ({ status, tasks, setTasks, todos, inProgress, closed }) => {
         <Header text={text} bg={bg} count={tasksToMap.length} />
         {tasksToMap.length > 0 &&
           tasksToMap.map((task) => (
-            <Task key={task.id} tasks={tasks} setTasks={setTasks} task={task} />
+            <Task key={task.id} tasks={tasks} setTasks={setTasks} task={task} showModal={showModal} setShowModal={setShowModal}/>
           ))}
       </div>
     </>
@@ -111,7 +113,7 @@ const Header = ({ text, bg, count }) => {
   );
 };
 
-const Task = ({ task, tasks, setTasks }) => {
+const Task = ({ task, tasks, setTasks, showModal, setShowModal }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
     item: { id: task.id },
@@ -120,12 +122,13 @@ const Task = ({ task, tasks, setTasks }) => {
     }),
   }));
 
-  console.log(isDragging);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  }
 
   const handleEdit = (id) => {};
 
   const handleRemove = (id) => {
-    console.log(id);
 
     // exlude selected id
     const fTasks = tasks.filter((task) => task.id !== id);
@@ -145,7 +148,7 @@ const Task = ({ task, tasks, setTasks }) => {
         } cursor-grab`}
       >
         <p>
-          <button className="hover:underline " onClick={() => handleEdit(task.id)}>{task.name}</button>
+          <button className="hover: underline" onClick={handleOpenModal}>{task.name}</button>
         </p>
         <button
           className="absolute bottom-1 right-1 text-slate-400"
