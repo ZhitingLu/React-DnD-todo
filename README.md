@@ -22,7 +22,7 @@ Responsive design for different screen sizes
 Clone the repository:
 
  ```bash
-  git clone https://github.com/ZhitingLu/react-drag-and-drop-todo-app.git
+  git clone https://github.com/ZhitingLu/React-DnD-todo.git
 ```
 
 Navigate to the project directory:
