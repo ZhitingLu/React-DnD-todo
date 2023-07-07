@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const Modal = ({ tasks, setTasks, showModal, setShowModal }) => {
-
   return (
     <>
       {showModal ? (
@@ -12,18 +11,28 @@ const Modal = ({ tasks, setTasks, showModal, setShowModal }) => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Modal Title</h3>
+                  <h4 className="text-3xl text-slate-500 font-semibold">Edit task</h4>
                   <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    <span className="bg-transparent text-black opacity-50 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
                   </button>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
+                    <form action="">
+                        <div className="my-4 text-slate-500 text-lg leading-relaxed">
+                        <label htmlFor="">Task name</label>
+                        <input type="text" />
+                        </div>
+
+                        <div className="my-4 text-slate-500 text-lg leading-relaxed">
+                            <label htmlFor="">Task description</label>
+                            <input type="textarea" />
+                        </div>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     I always felt like I could do anything. That’s the main
                     thing people are controlled by! Thoughts- their perception
@@ -31,6 +40,7 @@ const Modal = ({ tasks, setTasks, showModal, setShowModal }) => {
                     themselves. If you're taught you can’t do anything, you
                     won’t do anything. I was taught I could do everything.
                   </p>
+                  </form>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
